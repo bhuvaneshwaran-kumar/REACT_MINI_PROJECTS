@@ -1,0 +1,1 @@
+This app uses Unsplash API to get Images.
