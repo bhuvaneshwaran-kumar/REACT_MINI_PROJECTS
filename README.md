@@ -1,7 +1,7 @@
 # REACT_MINI_PROJECTS
 
-#### Infinite Scroll 
+### Infinite Scroll 
 A Infinite Scroll Implemented using Intersection Observer
 
-#### Recipe App
+### Recipe App
 This App uses **EDAMAN Recipe Search API** to fetch food recipe. 
