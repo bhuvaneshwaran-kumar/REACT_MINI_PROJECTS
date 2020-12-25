@@ -3,18 +3,20 @@ import './App.css';
 import Image from './Image'
 
 function App() {
-  const API_KEY = `` // get API key from Unsplash and place here
-  const imageCount = 5
-  const apiURL = `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=${imageCount}`;
+  const imageCount = 5		// no of images which will be retrived everytime a request is made to Unsplash API
   const [images, setImages] = useState([])
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(true)          // for loading spinner
   const io_Element = useRef()
 
-
   useEffect(() => {
+    const getApiURL = () => {
+      const API_KEY = `👉//### REPLACE API KEY FROM UNSPLASH HERE! ###`
+      return `https://api.unsplash.com/photos/random/?client_id=${API_KEY}&count=${imageCount}`;
+    }
+
     const fetchImages = async () => {
-      const response = await fetch(apiURL)
+      const response = await fetch(getApiURL())
       const data = await response.json()
       setImages([
         ...images, ...data.map((image) => (
@@ -36,13 +38,13 @@ function App() {
     setLoading(true)
 
     console.log('image fetched:', count)
-  }, [count, apiURL])
+    // eslint-disable-next-line
+  }, [count])
 
   // Start Intersection Observer while the component starts
   useEffect(() => {
     const iO = new IntersectionObserver(entires => {
       let ratio = entires[0].intersectionRatio;
-      console.log(ratio)
       if (ratio > 0) {
         console.log('in the bottom!!')
         setCount(prev => prev + 1)
