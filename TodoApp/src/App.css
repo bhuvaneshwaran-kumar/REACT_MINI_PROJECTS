@@ -1,0 +1,54 @@
+.app{
+    width: 100%;
+    background-color: whitesmoke;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app__wrapper{
+    min-height:100vh ;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.app__titleText{
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: center;
+    user-select: none;
+}
+
+.todo__form{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.todo__Container{
+    width: 100%;
+    padding: 2rem 0;
+}
+
+/* Todo Component  */
+.todo{
+    background-color: rgba(66, 66, 66, 0.055);
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo:hover{
+    background-color: rgba(66, 66, 66, 0.137);
+}
