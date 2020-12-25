@@ -2,7 +2,7 @@
 
 ### 01-Recipe App
 This App uses **EDAMAN Recipe Search API** to fetch food recipe. 
-![](RecipeApp.gif)
+<img src="./assets/RecipeApp.gif">
 
 
 ### Infinite Scroll 
