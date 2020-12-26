@@ -1,12 +1,13 @@
 import firebase from "firebase"
 // Your web app's Firebase configuration
+// replace firebase keys here 👇
 var firebaseConfig = {
-    apiKey: "AIzaSyBIL0vsa_RGr6vhmCYEsLwK2eCX4MGY1bc",
-    authDomain: "to-do-app----react.firebaseapp.com",
-    projectId: "to-do-app----react",
-    storageBucket: "to-do-app----react.appspot.com",
-    messagingSenderId: "68356284541",
-    appId: "1:68356284541:web:79d2d018f865dbfb425114"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "1",
+    appId: ""
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
