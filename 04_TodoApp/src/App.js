@@ -1,31 +1,42 @@
-import { useState, useReducer } from "react"
+import { useState, useEffect } from "react"
 import './App.css';
 import { TextField, IconButton } from "@material-ui/core"
 import AddIcon from '@material-ui/icons/Add';
 import Todo from './Todo'
+import db from "./firebase"
+import firebase from "firebase"
 
 function App() {
   const [input, setInput] = useState('')
-  const intialState = { todos: [] };
-  const [state, dispatch] = useReducer(reducer, intialState);
+  const [todos, setTodos] = useState([])
 
-  function reducer(state, action) {
-    switch (action.type) {
-      case 'ADD_TODO':
-        return { ...state, todos: [action.payload, ...state.todos] }
-      case 'DELETE_TODO':
-        return { ...state, todos: state.todos.filter((todo) => todo.id !== action.payload.id) };
-      default:
-        return state;
+  useEffect(() => {
+    // onSnapshot is a realtime listener
+    const unsubscribe = db.collection("todos").orderBy('timestamp', 'desc')
+      .onSnapshot((snapshot) => {
+        setTodos(
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data()
+          }))
+        )       // end of setTodos
+      })        // end of onSnapshot
+
+    return () => {
+      unsubscribe()
     }
-  }
+
+  }, [])
 
 
   const handleSubmitForm = (event) => {
     event.preventDefault()
-    if (!input) return
-    const newTodo = { text: input, id: new Date().getTime(), completed: false }
-    dispatch({ type: 'ADD_TODO', payload: newTodo })
+    const newTodo = {
+      text: input,
+      completed: false,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }
+    db.collection('todos').add(newTodo)
     setInput('')
   }
 
@@ -39,13 +50,13 @@ function App() {
 
         <form onSubmit={handleSubmitForm} className="todo__form" autoComplete="off" >
           <TextField value={input} onChange={e => setInput(e.target.value)} id="standard-basic" fullWidth label="Type a Todo" />
-          <IconButton type='submit' >
+          <IconButton disabled={!input} type='submit' >
             <AddIcon />
           </IconButton>
         </form>
 
         <div className="todo__Container">
-          {state.todos.map((todo) => <Todo key={todo.id} todo={todo} dispatch={dispatch} />)}
+          {todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
         </div>
 
       </div>

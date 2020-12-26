@@ -1,15 +1,22 @@
 import React from 'react'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-
-function Todo({ todo, dispatch }) {
+import db from './firebase'
+function Todo({ todo }) {
 
     const handleDeleteTodo = () => {
-        dispatch({ type: 'DELETE_TODO', payload: todo })
+        db.collection('todos').doc(todo.id).delete()
     }
+
+    const handleCompleteTodo = () => {
+        db.collection('todos').doc(todo.id).update({
+            completed: !todo.data.completed
+        })
+    }
+
     return (
-        <div className="todo">
-            <p>{todo.text}</p>
+        <div className={todo.data.completed ? 'todo completed' : 'todo'} onClick={handleCompleteTodo}>
+            <p>{todo.data.text}</p>
             <IconButton onClick={handleDeleteTodo} color="secondary" size="small">
                 <DeleteIcon />
             </IconButton>
