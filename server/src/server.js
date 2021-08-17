@@ -1,7 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { PORT, MONGO_DB_URL } from './constants.js'
+import cookieParser from 'cookie-parser'
+
+import { PORT, MONGO_DB_URL, CORS_ORIGIN } from './constants.js'
+//Routes.
 import AuthRoute from './routes/auth.js'
 
 
@@ -19,18 +22,20 @@ const main = async () => {
 
         //Enable CORS_ORIGIN
         let corsOptions = {
-            origin: ['http://localhost:3001', 'http://localhost:3000'],
+            origin: CORS_ORIGIN.split(" "),
             optionsSuccessStatus: 200,
             credential: true
         }
         app.use(cors(corsOptions));
 
+        app.use(cookieParser());
+        app.use(express.json());
+        app.use(express.urlencoded({ extended: true }));
+
         // URI
         app.use('/api/auth', AuthRoute)
 
-        app.listen(PORT, () => {
-            console.log(`listening on port ${PORT}`)
-        })
+        app.listen(PORT, () => console.log(`listening on port ${PORT}`))
 
     }
     catch (err) {
