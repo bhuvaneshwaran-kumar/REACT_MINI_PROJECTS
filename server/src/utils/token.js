@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { PROD, SECERET1, SECERET2, COOKIE_NAME } from '../constants'
 
-export const createToken = async (user) => {
+export const createTokens = async (user) => {
     const { username, _id, tokenVersion } = user
     const payload = { username, _id }
 
@@ -22,6 +22,15 @@ export const createToken = async (user) => {
 export const verifyAccessToken = (accessToken) => {
     try {
         const data = jwt.verify(accessToken, SECERET1)
+        return data
+    } catch (err) {
+        return null
+    }
+}
+
+export const verifyRefreshToken = (refreshToken) => {
+    try {
+        const data = jwt.verify(refreshToken, SECERET2)
         return data
     } catch (err) {
         return null

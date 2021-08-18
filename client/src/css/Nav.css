@@ -1,0 +1,54 @@
+.knav__topNav {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 3rem;
+  /* border: 1px solid black; */
+}
+
+.knav__topNav_left {
+  display: flex;
+}
+
+li {
+  list-style: none;
+  /* margin: 0 2rem; */
+  /* border: 1px solid black; */
+}
+
+.knav__topNav_right {
+  display: flex;
+  min-width: 50vw;
+  justify-content: flex-end;
+  /* border: 1px solid black; */
+}
+
+.knav__topNav_right .knav__icons_label {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  word-wrap: none;
+  -webkit-transition: all 0.8s ease;
+  -moz-transition: all 0.8s ease;
+  -ms-transition: all 0.8s ease;
+  -o-transition: all 0.8s ease;
+  transition: width 0.8s ease-out;
+}
+
+.knav__topNav_right .knav__topNav_col {
+  padding: 0 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid black; */
+
+  /* align-items: center; */
+}
+
+.knav__topNav_right .knav__topNav_col:hover {
+  opacity: 0.7;
+}
+.knav__topNav_right .knav__topNav_col:hover > .knav__icons_label {
+  width: 100px;
+  height: auto;
+  /* border: 1px solid black; */
+}

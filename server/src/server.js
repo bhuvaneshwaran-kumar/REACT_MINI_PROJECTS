@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 
 import { PORT, MONGO_DB_URL, CORS_ORIGIN } from './constants.js'
 //Routes.
-import AuthRoute from './routes/auth.js'
+import authRouter from './routes/auth'
 
 
 
@@ -33,9 +33,10 @@ const main = async () => {
         app.use(express.urlencoded({ extended: true }));
 
         // URI
-        app.use('/api/auth', AuthRoute)
+        app.use('/api/auth', authRouter)
 
         app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+            .on('error', (err) => console.error(err.message))
 
     }
     catch (err) {
