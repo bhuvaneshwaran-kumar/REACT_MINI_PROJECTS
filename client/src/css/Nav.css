@@ -15,11 +15,12 @@ li {
   /* border: 1px solid black; */
 }
 
+/* Top Nav Right side starts */
+
 .knav__topNav_right {
   display: flex;
   min-width: 50vw;
   justify-content: flex-end;
-  /* border: 1px solid black; */
 }
 
 .knav__topNav_right .knav__icons_label {
@@ -31,24 +32,76 @@ li {
   -moz-transition: all 0.8s ease;
   -ms-transition: all 0.8s ease;
   -o-transition: all 0.8s ease;
-  transition: width 0.8s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .knav__topNav_right .knav__topNav_col {
   padding: 0 0.5rem;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  /* border: 1px solid black; */
-
-  /* align-items: center; */
+  align-items: center !important;
+  justify-content: space-between;
+  height: 2rem;
 }
+
+/* Hover effects For Knav__topNav_right Starts */
 
 .knav__topNav_right .knav__topNav_col:hover {
-  opacity: 0.7;
+  font-weight: 600;
+  color: white;
 }
+
+.knav__topNav_right .knav__topNav_col:nth-child(1):hover {
+  background-color: #141e61;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(2):hover {
+  background-color: #185adb;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(3):hover {
+  background-color: #da0037;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(4):hover {
+  background-color: #df0e62;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(5):hover {
+  background-color: #11144c;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(6):hover {
+  background-color: #30475e;
+}
+
 .knav__topNav_right .knav__topNav_col:hover > .knav__icons_label {
-  width: 100px;
-  height: auto;
-  /* border: 1px solid black; */
+  height: inherit;
+  line-height: 2rem;
+  white-space: nowrap;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
+.knav__topNav_right .knav__topNav_col:nth-child(1):hover .knav__icons_label,
+.knav__topNav_right .knav__topNav_col:nth-child(2):hover .knav__icons_label,
+.knav__topNav_right .knav__topNav_col:nth-child(3):hover .knav__icons_label,
+.knav__topNav_right .knav__topNav_col:nth-child(4):hover .knav__icons_label {
+  width: 80px !important;
+}
+.knav__topNav_right .knav__topNav_col:nth-child(5):hover .knav__icons_label,
+.knav__topNav_right .knav__topNav_col:nth-child(6):hover .knav__icons_label {
+  width: 150px !important;
+}
+
+/* Hover effects For Knav__topNav_right ends */
+
+@media screen and (max-width: 600px) {
+  .knav__topNav_right .knav__topNav_col:hover > .knav__icons_label {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .knav__topNav_right {
+    display: none !important;
+  }
+}
+
+/* Top Nav Right side Ends */

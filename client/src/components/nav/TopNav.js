@@ -33,7 +33,7 @@ function TopNav() {
         </div>
         <div className="knav__topNav_col">
           <PhoneIcon size="1.1em" className="knav__icons" />
-          <span className="knav__icons_label">9999999999</span>
+          <span className="knav__icons_label">+91 9999999999</span>
         </div>
         <div className="knav__topNav_col">
           <MailIcon size="1.1em" className="knav__icons" />
