@@ -1,21 +1,21 @@
-import { useEffect } from 'react'
-import Nav from './components/nav/Nav'
+import { useEffect } from "react";
+import Nav from "./components/nav/Nav";
 function App() {
-
   useEffect(() => {
-    fetch('http://localhost:8080/api/auth')
+    fetch("http://localhost:8080/api/auth")
       .then((response) => {
-        return response.json()
+        return response.json();
       })
-      .then(data => {
-        console.log(data)
-      })
+      .then((data) => {
+        console.log(data);
+      });
   }, []);
   return (
-
     <div className="App">
       <Nav />
-      Hello World
+      <div style={{ height: "200vh" }}>
+        <span style={{ position: "sticky", top: "0" }}>Hello World</span>
+      </div>
     </div>
   );
 }

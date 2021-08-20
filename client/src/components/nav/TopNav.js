@@ -11,8 +11,8 @@ function TopNav() {
   return (
     <div className="knav__topNav">
       <div className="knav__topNav_left">
-        <li>Option one</li>
-        <li>Option two</li>
+        <li className="knav__topNav_guide">SHIPPING CALCULATOR</li>
+        <li className="knav__topNav_guide">ASSISTED PURCHASE</li>
       </div>
       <div className="knav__topNav_right">
         <div className="knav__topNav_col">

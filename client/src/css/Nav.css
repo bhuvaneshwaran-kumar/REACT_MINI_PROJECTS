@@ -1,26 +1,53 @@
+.knav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: -3rem;
+  z-index: 2;
+  background-color: white;
+}
 .knav__topNav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0.5rem 3rem;
+  align-items: center;
   /* border: 1px solid black; */
+  width: 100%;
 }
 
 .knav__topNav_left {
   display: flex;
+  /* border: 1px solid rgb(125, 125, 125); */
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-li {
+.knav__topNav_guide {
   list-style: none;
-  /* margin: 0 2rem; */
+  font-weight: 500;
+  margin: 0 2rem;
+  line-height: 2rem;
+  height: 2rem;
+  white-space: nowrap;
+  opacity: 0.8;
+  font-size: 0.8rem;
+  cursor: pointer;
   /* border: 1px solid black; */
+}
+.knav__topNav_guide:hover {
+  opacity: 1;
 }
 
 /* Top Nav Right side starts */
 
 .knav__topNav_right {
   display: flex;
-  min-width: 50vw;
+  max-width: 50vw;
   justify-content: flex-end;
+  /* border: 1px solid black; */
 }
 
 .knav__topNav_right .knav__icons_label {
@@ -36,7 +63,7 @@ li {
 }
 
 .knav__topNav_right .knav__topNav_col {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   cursor: pointer;
   display: flex;
   align-items: center !important;
@@ -92,16 +119,45 @@ li {
 
 /* Hover effects For Knav__topNav_right ends */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .knav__topNav_right .knav__topNav_col:hover > .knav__icons_label {
     display: none !important;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 830px) {
   .knav__topNav_right {
     display: none !important;
+  }
+  .knav__topNav {
+    justify-content: center;
   }
 }
 
 /* Top Nav Right side Ends */
+
+/* Bottom Nav */
+
+.knav__bottomNav {
+  border: 1px solid black;
+  height: 2rem;
+  width: 90vw;
+  transition: all 0.3s ease-out;
+}
+
+.knav__bottomNav.active {
+  width: 100%;
+}
+.knav__bottomNav .knav__botNav_mid {
+  display: flex;
+
+  /* border: 1px solid black; */
+}
+.knav__botNav_guide {
+  list-style: none;
+}
+@media screen and (max-width: 900px) {
+  .knav__bottomNav .knav__botNav_mid {
+    display: none !important;
+  }
+}
