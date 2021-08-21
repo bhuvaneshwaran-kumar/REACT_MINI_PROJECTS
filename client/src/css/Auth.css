@@ -1,0 +1,43 @@
+.kauth__outer {
+  width: 100%;
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+}
+.kauth__inner {
+  width: 30%;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.kauth__form {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  justify-content: space-evenly;
+  min-height: 30vh;
+}
+.kauth__form_row {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+.kauth__inner_action {
+  display: flex;
+  justify-content: space-between;
+}
+.kauth__inner_action span:hover {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+@media screen and (max-width: 800px) {
+  .kauth__inner {
+    width: 80% !important;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .kauth__inner {
+    width: 60%;
+  }
+}

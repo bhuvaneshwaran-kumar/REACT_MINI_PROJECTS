@@ -1,4 +1,5 @@
 import { Router } from "express";
+import bcrypt from "bcrypt";
 import { COOKIE_NAME } from "../constants";
 import { createTokens, verifyRefreshToken } from "../utils/token";
 import User from '../models/User';
@@ -51,6 +52,15 @@ router.post('/refresh', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+
+})
+
+router.post('/signup', async (req, res) => {
+    const payload = {
+        ...req.body,
+        password: await bcrypt.hash(req.body.password, 10)
+    }
+    console.log(payload)
 
 })
 
