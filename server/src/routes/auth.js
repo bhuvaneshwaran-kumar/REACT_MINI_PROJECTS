@@ -60,8 +60,31 @@ router.post('/signup', async (req, res) => {
         ...req.body,
         password: await bcrypt.hash(req.body.password, 10)
     }
-    console.log(payload)
+    try {
+        const checkUserExit = await User.findOne({ email: req.body.email }).exec()
+        if (!checkUserExit) {
+            const user = new User(payload)
+            await user.save()
+            res.json({
+                ok: true,
+                message: 'Account created successfully, login to your account.'
+            })
+        } else {
+            throw {
+                code: 420, message: 'User already Exist with the email...'
+            }
+        }
+    } catch (err) {
+        console.log(err)
+        if (err.code === 420) {
+            res.json({
+                ok: false, message: err.message,
+            })
+        } else {
+            res.json({ ok: false, message: 'Unable to create an account, please try again later' })
+        }
 
+    }
 })
 
 router.post('/')
