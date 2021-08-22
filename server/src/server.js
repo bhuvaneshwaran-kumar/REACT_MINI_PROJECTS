@@ -7,6 +7,7 @@ import { PORT, MONGO_DB_URL, CORS_ORIGIN } from './constants.js'
 //Routes.
 import authRouter from './routes/auth'
 
+console.log(CORS_ORIGIN)
 
 
 const main = async () => {

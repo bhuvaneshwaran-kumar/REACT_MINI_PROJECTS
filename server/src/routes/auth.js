@@ -52,7 +52,30 @@ router.post('/refresh', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+    try {
+        const findUser = await User.findOne({ email: req.body.email }).exec()
+        if (!findUser) throw { ok: false, message: 'user not found.' }
 
+        const checkPassword = await bcrypt.compare(req.body.password, findUser.password)
+
+        if (!checkPassword) throw { ok: false, message: 'invalid credential' }
+
+        const { accessToken, refreshToken } = await createTokens(findUser)
+
+        await sendRefreshTokenAsCokkie(res, refreshToken)
+
+        const { username, email, _id } = findUser
+        res.json({
+            ok: true,
+            data: {
+                accessToken,
+                user: { username, email, _id }
+            }
+        })
+    }
+    catch (err) {
+        res.json({ ok: false, message: err.message })
+    }
 })
 
 router.post('/signup', async (req, res) => {

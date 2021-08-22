@@ -1,17 +1,17 @@
 import jwt from 'jsonwebtoken'
-import { PROD, SECERET1, SECERET2, COOKIE_NAME } from '../constants'
+import { PROD, SECRET1, SECRET2, COOKIE_NAME } from '../constants.js'
 
 export const createTokens = async (user) => {
     const { username, _id, tokenVersion } = user
     const payload = { username, _id }
 
-    const accessToken = jwt.sign(payload, SECERET1, {
+    const accessToken = jwt.sign(payload, SECRET1, {
         expiresIn: '7d',
     })
 
     payload.tokenVersion = tokenVersion
 
-    const refreshToken = jwt.sign(payload, SECERET2, {
+    const refreshToken = jwt.sign(payload, SECRET2, {
         expiresIn: "15d"
     })
 
