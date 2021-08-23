@@ -1,7 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import { COOKIE_NAME } from "../constants";
-import { createTokens, verifyRefreshToken } from "../utils/token";
+import { createTokens, verifyRefreshToken, sendRefreshTokenAsCokkie } from "../utils/token";
 import User from '../models/User';
 
 const router = Router();
@@ -22,8 +22,9 @@ router.post('/refresh', async (req, res) => {
             message: 'no token is provided'
         })
     }
-
-    const payload = verifyRefreshToken(tokken)
+    console.log(COOKIE_NAME, tokken)
+    const payload = await verifyRefreshToken(tokken)
+    console.log(payload)
     if (!payload) {
         return res.json({
             ok: false,
@@ -47,7 +48,7 @@ router.post('/refresh', async (req, res) => {
     const { _id, username, email } = user
     return res.json({
         ok: true,
-        data: { accessToken, user: { _id, username, email } }
+        user: { accessToken, _id, username, email }
     })
 })
 
@@ -62,14 +63,17 @@ router.post('/login', async (req, res) => {
 
         const { accessToken, refreshToken } = await createTokens(findUser)
 
-        await sendRefreshTokenAsCokkie(res, refreshToken)
+        sendRefreshTokenAsCokkie(res, refreshToken)
 
+        console.log('cookie has been set')
         const { username, email, _id } = findUser
         res.json({
             ok: true,
             data: {
                 accessToken,
-                user: { username, email, _id }
+                username,
+                email,
+                _id
             }
         })
     }

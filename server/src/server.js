@@ -24,8 +24,9 @@ const main = async () => {
         //Enable CORS_ORIGIN
         let corsOptions = {
             origin: CORS_ORIGIN.split(" "),
-            optionsSuccessStatus: 200,
-            credential: true
+            // optionsSuccessStatus: 200,
+            credentials: true,
+            method: 'GET,POST,PUT,DELETE',
         }
         app.use(cors(corsOptions));
 

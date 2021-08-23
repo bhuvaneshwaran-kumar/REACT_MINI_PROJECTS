@@ -6,7 +6,7 @@ export const createTokens = async (user) => {
     const payload = { username, _id }
 
     const accessToken = jwt.sign(payload, SECRET1, {
-        expiresIn: '7d',
+        expiresIn: "7d",
     })
 
     payload.tokenVersion = tokenVersion
@@ -21,16 +21,16 @@ export const createTokens = async (user) => {
 
 export const verifyAccessToken = (accessToken) => {
     try {
-        const data = jwt.verify(accessToken, SECERET1)
+        const data = jwt.verify(accessToken, SECRET1)
         return data
     } catch (err) {
         return null
     }
 }
 
-export const verifyRefreshToken = (refreshToken) => {
+export const verifyRefreshToken = async (refreshToken) => {
     try {
-        const data = jwt.verify(refreshToken, SECERET2)
+        const data = await jwt.verify(refreshToken, SECRET2)
         return data
     } catch (err) {
         return null
@@ -40,7 +40,7 @@ export const verifyRefreshToken = (refreshToken) => {
 export const sendRefreshTokenAsCokkie = (res, refreshToken) => {
     res.cookie(COOKIE_NAME, refreshToken, {
         httpOnly: true,
-        path: '/api/auth',
+        path: '/api/auth/',
         secure: PROD,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
     })

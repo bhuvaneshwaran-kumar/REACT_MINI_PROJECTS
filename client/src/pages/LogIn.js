@@ -1,9 +1,14 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from 'react-redux'
+import { setUser } from '../actions/index'
+
 import "../css/Auth.css";
 function Login() {
 
   const formRef = useRef()
   const [message, setMessage] = useState('')
+
+  const dispatch = useDispatch()
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -17,13 +22,16 @@ function Login() {
         'Content-Type': 'application/json',
         'accept': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify(payload)
     })
 
     const data = await response.json()
 
     if (data.ok) {
-      alert('user logged in successfully')
+      // alert('user logged in successfully')
+      // console.log(data)
+      dispatch(setUser(data.data))
     } else {
       setMessage(data.message)
     }

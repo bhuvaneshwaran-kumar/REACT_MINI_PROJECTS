@@ -10,12 +10,12 @@ function BottomNav() {
     if (bottomNavReachTop) bottomNav.current.classList.add("active");
     if (!bottomNavReachTop) bottomNav.current.classList.remove("active");
     // bottomNav.current.classList.add("active");
-    console.log(bottomNav.current.classList);
+    // console.log(bottomNav.current.classList);
   }, [bottomNavReachTop]);
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log(bottomNav.current.getBoundingClientRect());
+      // console.log(bottomNav.current.getBoundingClientRect());
       let { top } = bottomNav.current.getBoundingClientRect();
       if (top <= 0) {
         setBottomNavReachTop(true);
