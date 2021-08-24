@@ -114,6 +114,9 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.post('/')
+router.post('/logout', async (_, res) => {
+    sendRefreshTokenAsCokkie(res, '')
+    return res.json({ ok: true })
+})
 
 export default router;

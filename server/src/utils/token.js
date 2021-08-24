@@ -38,6 +38,7 @@ export const verifyRefreshToken = async (refreshToken) => {
 }
 
 export const sendRefreshTokenAsCokkie = (res, refreshToken) => {
+    console.log(refreshToken, 'logout')
     res.cookie(COOKIE_NAME, refreshToken, {
         httpOnly: true,
         path: '/api/auth/',
