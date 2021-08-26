@@ -1,15 +1,16 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setUser } from '../../actions/index'
+import { setUser } from "../../actions/index";
+import { GiHamburgerMenu } from "react-icons/gi";
 function BottomNav({ loading }) {
   const bottomNav = useRef();
   const [bottomNavReachTop, setBottomNavReachTop] = useState(false);
-
+  const [openMenu, setOpenMenu] = useState(false);
   const history = useHistory();
 
-  const user = useSelector(store => store.user)
-  const dispatch = useDispatch()
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   useLayoutEffect(() => {
     if (bottomNavReachTop) bottomNav.current.classList.add("active");
     if (!bottomNavReachTop) bottomNav.current.classList.remove("active");
@@ -38,19 +39,30 @@ function BottomNav({ loading }) {
   const handleLogOut = async () => {
     const response = await fetch(`http://localhost:8080/api/auth/logout`, {
       headers: {
-        'accept': 'application/json'
+        accept: "application/json",
       },
-      credentials: 'include',
-      method: 'POST',
-    })
+      credentials: "include",
+      method: "POST",
+    });
     const data = await response.json();
     if (data.ok) {
-      dispatch(setUser(null))
+      dispatch(setUser(null));
     }
-  }
+  };
 
   return (
-    <div className="knav__bottomNav" ref={bottomNav}>
+    <div
+      className={openMenu ? "knav__bottomNav open_menu" : "knav__bottomNav"}
+      ref={bottomNav}
+    >
+      <ul className="knav__botNav_menu">
+        <li
+          className="knav__botNav_guide icon"
+          onClick={() => setOpenMenu((prev) => !prev)}
+        >
+          <GiHamburgerMenu fontSize="large" />
+        </li>
+      </ul>
       <ul className="knav__botNav_left">
         <li className="knav__botNav_guide">Kartiyo</li>
       </ul>
@@ -63,34 +75,28 @@ function BottomNav({ loading }) {
         <li className="knav__botNav_guide">Contact</li>
       </ul>
 
-      {
-        !loading && !user ? (
-          <ul className="knav__botNav_right">
-            <li
-              className="knav__botNav_guide"
-              onClick={() => handleAuth("/auth/login")}
-            >
-              Login
-            </li>
-            <li
-              className="knav__botNav_guide"
-              onClick={() => handleAuth("/auth/signup")}
-            >
-              Signup
-            </li>
-          </ul>
-        ) : (
-          <ul className="knav__botNav_right">
-            <li
-              className="knav__botNav_guide"
-              onClick={handleLogOut}
-            >
-              Logout
-            </li>
-          </ul>
-        )
-      }
-
+      {!loading && !user ? (
+        <ul className="knav__botNav_right">
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/auth/login")}
+          >
+            Login
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/auth/signup")}
+          >
+            Signup
+          </li>
+        </ul>
+      ) : (
+        <ul className="knav__botNav_right">
+          <li className="knav__botNav_guide" onClick={handleLogOut}>
+            Logout
+          </li>
+        </ul>
+      )}
     </div>
   );
 }

@@ -16,6 +16,7 @@ function Login() {
 
   useLayoutEffect(() => {
     if (user) return history.replace('/')
+    // eslint-disable-next-line 
   }, [user])
 
   const handleLogIn = async (e) => {

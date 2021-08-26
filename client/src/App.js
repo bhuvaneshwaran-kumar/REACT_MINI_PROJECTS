@@ -39,7 +39,7 @@ function App() {
         }
         setLoading(false);
       });
-
+    // eslint-disable-next-line 
   }, []);
 
   return (
@@ -58,6 +58,7 @@ function App() {
             <Route path='/shipping-calculator' exact>
               <ShippingCalculator />
             </Route>
+
             <Route path="/auth/login" >
               <Login />
             </Route>
