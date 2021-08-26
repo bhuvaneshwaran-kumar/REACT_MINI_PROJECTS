@@ -176,6 +176,13 @@
 .knav__botNav_menu {
   display: none;
 }
+@media screen and (min-width: 900px) {
+  .knav__bottomNav .knav__botNav_mid,
+  .knav__botNav_right,
+  .knav__botNav_left {
+    flex-direction: row !important;
+  }
+}
 @media screen and (max-width: 900px) {
   .knav__botNav_menu {
     display: inline-block;

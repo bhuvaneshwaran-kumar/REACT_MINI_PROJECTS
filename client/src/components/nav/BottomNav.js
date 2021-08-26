@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setUser } from "../../actions/index";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { GrClose as GrCloseMenu } from "react-icons/gr";
 function BottomNav({ loading }) {
   const bottomNav = useRef();
   const [bottomNavReachTop, setBottomNavReachTop] = useState(false);
@@ -18,7 +19,7 @@ function BottomNav({ loading }) {
     // console.log(bottomNav.current.classList);
   }, [bottomNavReachTop]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleScroll = () => {
       // console.log(bottomNav.current.getBoundingClientRect());
       let { top } = bottomNav.current.getBoundingClientRect();
@@ -28,8 +29,16 @@ function BottomNav({ loading }) {
         setBottomNavReachTop(false);
       }
     };
+    const handleResize = () => {
+      if (window.innerWidth > 900) setOpenMenu(false);
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const handleAuth = (to) => {
@@ -60,7 +69,11 @@ function BottomNav({ loading }) {
           className="knav__botNav_guide icon"
           onClick={() => setOpenMenu((prev) => !prev)}
         >
-          <GiHamburgerMenu fontSize="large" />
+          {!openMenu ? (
+            <GiHamburgerMenu fontSize="large" />
+          ) : (
+            <GrCloseMenu fontSize="large" />
+          )}
         </li>
       </ul>
       <ul className="knav__botNav_left">
