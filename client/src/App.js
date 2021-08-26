@@ -5,6 +5,9 @@ import SignUp from "./pages/SignUp";
 import { Switch, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import { setUser } from './actions/index'
+import Home from './pages/Home'
+import AssistedPurchase from './pages/AssistedPurchase'
+import ShippingCalculator from './pages/ShippingCalculator'
 function App() {
 
   const [loading, setLoading] = useState(true)
@@ -47,10 +50,13 @@ function App() {
 
           <Switch>
             <Route path='/' exact>
-              HomePage
+              <Home />
             </Route>
-            <Route path='/page1' exact>
-              page1
+            <Route path='/assisted-purchase' exact>
+              <AssistedPurchase />
+            </Route>
+            <Route path='/shipping-calculator' exact>
+              <ShippingCalculator />
             </Route>
             <Route path="/auth/login" >
               <Login />

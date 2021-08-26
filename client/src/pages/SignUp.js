@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import "../css/Auth.css";
 
 function SignUp() {
@@ -6,6 +8,14 @@ function SignUp() {
     const formRef = useRef()
 
     const [message, setMessage] = useState('')
+
+    const user = useSelector(store => store.user)
+
+    const history = useHistory()
+
+    useLayoutEffect(() => {
+        if (user) return history.replace('/')
+    }, [user])
 
     const handleSignup = async (e) => {
         setMessage('')

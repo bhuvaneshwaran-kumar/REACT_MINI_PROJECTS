@@ -15,7 +15,6 @@ function Login() {
   const history = useHistory()
 
   useLayoutEffect(() => {
-    console.log(user)
     if (user) return history.replace('/')
   }, [user])
 
