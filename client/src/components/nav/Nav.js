@@ -2,11 +2,11 @@ import React from 'react'
 import '../../css/Nav.css'
 import TopNav from './TopNav'
 import BottomNav from './BottomNav'
-function Nav() {
+function Nav({ loading }) {
     return (
         <div className="knav">
             <TopNav />
-            <BottomNav />
+            <BottomNav loading={loading} />
         </div>
     )
 }

@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from 'react-redux'
+import React, { useLayoutEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from "react-router-dom";
 import { setUser } from '../actions/index'
 
 import "../css/Auth.css";
@@ -9,6 +10,14 @@ function Login() {
   const [message, setMessage] = useState('')
 
   const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
+
+  const history = useHistory()
+
+  useLayoutEffect(() => {
+    console.log(user)
+    if (user) return history.replace('/')
+  }, [user])
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -32,6 +41,7 @@ function Login() {
       // alert('user logged in successfully')
       // console.log(data)
       dispatch(setUser(data.data))
+      history.replace('/')
     } else {
       setMessage(data.message)
     }
