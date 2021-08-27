@@ -6,7 +6,7 @@ function Nav({ loading }) {
     return (
         <div className="knav">
             <TopNav />
-            <BottomNav loading={loading} />
+            {/* <BottomNav loading={loading} /> */}
         </div>
     )
 }

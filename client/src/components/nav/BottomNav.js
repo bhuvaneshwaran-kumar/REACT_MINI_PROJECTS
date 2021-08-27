@@ -15,9 +15,9 @@ function BottomNav({ loading }) {
   useLayoutEffect(() => {
     if (bottomNavReachTop) bottomNav.current.classList.add("active");
     if (!bottomNavReachTop) bottomNav.current.classList.remove("active");
-    // bottomNav.current.classList.add("active");
-    // console.log(bottomNav.current.classList);
-  }, [bottomNavReachTop]);
+    if (openMenu) bottomNav.current.classList.add("open_menu");
+    if (!openMenu) bottomNav.current.classList.remove("open_menu");
+  }, [bottomNavReachTop, openMenu]);
 
   useLayoutEffect(() => {
     const handleScroll = () => {
@@ -60,56 +60,82 @@ function BottomNav({ loading }) {
   };
 
   return (
-    <div
-      className={openMenu ? "knav__bottomNav open_menu" : "knav__bottomNav"}
-      ref={bottomNav}
-    >
-      <ul className="knav__botNav_menu">
-        <li
-          className="knav__botNav_guide icon"
-          onClick={() => setOpenMenu((prev) => !prev)}
-        >
-          {!openMenu ? (
-            <GiHamburgerMenu fontSize="large" />
-          ) : (
-            <GrCloseMenu fontSize="large" />
-          )}
-        </li>
-      </ul>
-      <ul className="knav__botNav_left">
-        <li className="knav__botNav_guide">Kartiyo</li>
-      </ul>
-      <ul className="knav__botNav_mid">
-        <li className="knav__botNav_guide">Home</li>
-        <li className="knav__botNav_guide">Pricing & Services</li>
-        <li className="knav__botNav_guide">Refer friend</li>
-        <li className="knav__botNav_guide">How it works </li>
-        <li className="knav__botNav_guide">FAQs</li>
-        <li className="knav__botNav_guide">Contact</li>
-      </ul>
+    <div className="knavBottom_NavWrapper">
+      <div className={`knav__bottomNav`} ref={bottomNav}>
+        <ul className="knav__botNav_menu">
+          <li
+            className="knav__botNav_guide icon"
+            onClick={() => setOpenMenu((prev) => !prev)}
+          >
+            {!openMenu ? (
+              <GiHamburgerMenu fontSize="large" />
+            ) : (
+              <GrCloseMenu fontSize="large" />
+            )}
+          </li>
+        </ul>
+        <ul className="knav__botNav_left">
+          <li className="knav__botNav_guide">Kartiyo</li>
+        </ul>
+        <ul className="knav__botNav_mid">
+          <li className="knav__botNav_guide" onClick={() => handleAuth("/")}>
+            Home
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/pricing-&-service")}
+          >
+            Pricing & Services
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/refer-friend")}
+          >
+            Refer friend
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/how-it-works")}
+          >
+            How it works{" "}
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/FAQ's")}
+          >
+            FAQs
+          </li>
+          <li
+            className="knav__botNav_guide"
+            onClick={() => handleAuth("/constact")}
+          >
+            Contact
+          </li>
+        </ul>
 
-      {!loading && !user ? (
-        <ul className="knav__botNav_right">
-          <li
-            className="knav__botNav_guide"
-            onClick={() => handleAuth("/auth/login")}
-          >
-            Login
-          </li>
-          <li
-            className="knav__botNav_guide"
-            onClick={() => handleAuth("/auth/signup")}
-          >
-            Signup
-          </li>
-        </ul>
-      ) : (
-        <ul className="knav__botNav_right">
-          <li className="knav__botNav_guide" onClick={handleLogOut}>
-            Logout
-          </li>
-        </ul>
-      )}
+        {!loading && !user ? (
+          <ul className="knav__botNav_right">
+            <li
+              className="knav__botNav_guide"
+              onClick={() => handleAuth("/auth/login")}
+            >
+              Login
+            </li>
+            <li
+              className="knav__botNav_guide"
+              onClick={() => handleAuth("/auth/signup")}
+            >
+              Signup
+            </li>
+          </ul>
+        ) : (
+          <ul className="knav__botNav_right">
+            <li className="knav__botNav_guide" onClick={handleLogOut}>
+              Logout
+            </li>
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

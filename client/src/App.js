@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Nav from "./components/nav/Nav";
+import BottomNav from "./components/nav/BottomNav";
 import Login from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import { Switch, Route } from 'react-router-dom'
@@ -45,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <Nav loading={loading} />
+      <BottomNav loading={loading} />
       {
         !loading && (
 

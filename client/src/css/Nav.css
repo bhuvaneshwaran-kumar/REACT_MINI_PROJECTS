@@ -140,22 +140,39 @@
 /* Top Nav Right side Ends */
 
 /* Bottom Nav */
-
+.knavBottom_NavWrapper {
+  /* border: 1px solid black; */
+  position: sticky;
+  height: 2rem;
+  overflow-y: visible;
+  top: 0;
+}
 .knav__bottomNav {
-  border: 1px solid black;
-  min-height: 2rem;
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  height: 2rem;
   width: 90vw;
   margin: auto;
+  z-index: 10000;
   display: flex;
   justify-content: space-between;
   /* align-items: flex-end; */
-  transition: all 0.3s ease-out;
+  transition: width 0.3s ease-out;
 }
 
 .knav__bottomNav.active {
   width: 100%;
 }
-
+.knav__bottomNav.open_menu {
+  height: 18rem;
+}
+.knav__bottomNav .knav__botNav_mid,
+.knav__botNav_right,
+.knav__botNav_left {
+  display: flex;
+  transition: all 0.3s ease-out;
+}
 .knav__bottomNav.open_menu .knav__botNav_mid,
 .knav__bottomNav.open_menu .knav__botNav_right,
 .knav__bottomNav.open_menu .knav__botNav_left {
@@ -163,11 +180,7 @@
   width: 100% !important;
   flex-direction: column;
 }
-.knav__bottomNav .knav__botNav_mid,
-.knav__botNav_right,
-.knav__botNav_left {
-  display: flex;
-}
+
 .knav__botNav_guide {
   list-style: none;
   padding: 0 0.5rem;
